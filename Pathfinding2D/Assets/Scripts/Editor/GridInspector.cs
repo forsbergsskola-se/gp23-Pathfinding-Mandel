@@ -16,8 +16,6 @@ namespace Editor
             if (GUILayout.Button("Generate Grid"))
             {
                 Grid grid = target as Grid;
-
-                
                 foreach (var t in grid.walkableGrid)
                 {
                     if (grid.walkableGrid != null)
@@ -31,13 +29,11 @@ namespace Editor
                 {
                     for (var y = 0; y < grid.walkableGrid.Length / grid.width; y++)
                     {
-                        GridCell gridElement = (GridCell)PrefabUtility.InstantiatePrefab(cellPrefab);
+                        GridCell gridElement = (GridCell)PrefabUtility.InstantiatePrefab(cellPrefab, grid.transform);
                         gridElement.transform.position = new Vector3(x, y, 0);
                         grid.walkableGrid[i++] = gridElement;
                     }
                 }
-                
-                
                 EditorUtility.SetDirty(grid); // do this so the change can be saved
             }
             EditorGUI.EndDisabledGroup();

@@ -5,7 +5,7 @@ using UnityEngine;
 public class Grid : MonoBehaviour
 {
     private bool[] walkableGrid = new bool[100];
-    public int width;
+    public int width = 10;
 
     public bool IsWalkable(int x, int y)
     {

@@ -1,10 +1,28 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(SpriteRenderer))] 
+public class GridCell : MonoBehaviour
+{
+    public SpriteRenderer spriteRenderer;
+    public bool isWalkable;
+
+    void Start()
+    {
+        OnValidate();
+    }
+
+    private void OnValidate() // Editor only function, very handy
+    {
+        spriteRenderer.color = isWalkable ? Color.white : Color.black;
+    }
+}
+
 public class Grid : MonoBehaviour
 {
-    private bool[] walkableGrid = new bool[100];
+    public GridCell[] walkableGrid = new GridCell[100];
     public int width = 10;
 
     public bool IsWalkable(int x, int y)
@@ -13,15 +31,4 @@ public class Grid : MonoBehaviour
     }
     
     
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

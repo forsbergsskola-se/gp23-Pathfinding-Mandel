@@ -27,7 +27,7 @@ public class Grid : MonoBehaviour
 
     public bool IsWalkable(int x, int y)
     {
-        return walkableGrid[y * width + x]; // find the right index in the array.
+        return walkableGrid[y * width + x].isWalkable; // find the right index in the array.
     }
     
     

@@ -16,11 +16,12 @@ namespace Editor
             if (GUILayout.Button("Generate Grid"))
             {
                 Grid grid = target as Grid;
-                foreach (var t in grid.walkableGrid)
+                if (EditorUtility.IsDirty(grid))
                 {
-                    if (grid.walkableGrid != null)
+                    foreach (var cell in grid.walkableGrid)
                     {
-                        //DestroyImmediate(grid.walkableGrid);
+                        if(cell != null)
+                            DestroyImmediate(cell.gameObject);
                     }
                 }
 

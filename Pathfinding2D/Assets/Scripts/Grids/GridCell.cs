@@ -15,6 +15,7 @@ namespace Grids
 
         private void OnValidate() // Editor only function, very handy
         {
+            spriteRenderer = GetComponent<SpriteRenderer>();
             spriteRenderer.color = isWalkable ? Color.white : Color.black;
         }
     }

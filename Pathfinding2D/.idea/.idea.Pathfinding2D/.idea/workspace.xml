@@ -4,14 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="968ca980-0396-4874-82cb-dd4df95c4ba7" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Pathfinding2D/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Pathfinding2D/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Scene1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Scene1.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Editor/GridInspector.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Editor/GridInspector.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Grids/Grid.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Grids/Grid.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Tests/GridTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Tests/GridTests.cs" afterDir="false" />
-    </list>
+    <list default="true" id="968ca980-0396-4874-82cb-dd4df95c4ba7" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -100,7 +93,7 @@
       <updated>1716208383874</updated>
       <workItem from="1716208387487" duration="6935000" />
       <workItem from="1716275622223" duration="8644000" />
-      <workItem from="1716287644497" duration="6782000" />
+      <workItem from="1716287644497" duration="7152000" />
     </task>
     <servers />
   </component>

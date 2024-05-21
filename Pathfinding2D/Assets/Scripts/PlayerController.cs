@@ -16,8 +16,10 @@ public class PlayerController : MonoBehaviour
             GridCell start = grid.GetCellForPosition(this.transform.position);
             GridCell end = grid.GetCellForPosition(gold.transform.position);
             var path = FindPath(grid, start, end);
-            // start courotine
-            // traverse the path
+            foreach (var node in path)
+            {
+                node.spriteRenderer.color = Color.green;
+            }
         }
     }
 
@@ -35,6 +37,8 @@ public class PlayerController : MonoBehaviour
             {
                 if(visited.Contains(neighbour)) continue;
                 path.Push(neighbour);
+                visited.Add(neighbour);
+                neighbour.spriteRenderer.color = Color.blue;
                 if (neighbour == end) return path;
                 foundNextNode = true;
                 break;

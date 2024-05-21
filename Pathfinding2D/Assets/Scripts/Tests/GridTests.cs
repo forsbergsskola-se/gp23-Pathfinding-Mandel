@@ -1,3 +1,4 @@
+using NUnit.Framework;
 using UnityEditor;
 
 namespace Tests
@@ -5,10 +6,12 @@ namespace Tests
     public class GridTests
     {
 
-        [NUnit.Framework.Test]
+        private Grid _grid;
+        
+        [Test]
         public void GridTestsSimplePasses()
         {
-            // Use the Assert class to test conditions.
+            
             
         }
 

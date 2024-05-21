@@ -1,5 +1,7 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Grids;
 using UnityEngine;
 using Grid = Grids.Grid;
@@ -20,6 +22,21 @@ public class PlayerController : MonoBehaviour
             {
                 node.spriteRenderer.color = Color.green;
             }
+            StartCoroutine(Co_WalkPath(path));
+        }
+    }
+
+    IEnumerator Co_WalkPath(IEnumerable<GridCell> path)
+    {
+        foreach (var cell in path)
+        {
+            while (Vector2.Distance(transform.position, cell.transform.position) > 0.001f)
+            {
+                Vector3 targetPosition = Vector2.MoveTowards(transform.position, cell.transform.position, Time.deltaTime);
+                targetPosition.z = transform.position.z;
+                transform.position = targetPosition;
+                yield return null;
+            }
         }
     }
 
@@ -39,7 +56,7 @@ public class PlayerController : MonoBehaviour
                 path.Push(neighbour);
                 visited.Add(neighbour);
                 neighbour.spriteRenderer.color = Color.blue;
-                if (neighbour == end) return path;
+                if (neighbour == end) return path.Reverse();
                 foundNextNode = true;
                 break;
             }

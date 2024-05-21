@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="968ca980-0396-4874-82cb-dd4df95c4ba7" name="Changes" comment="" />
+    <list default="true" id="968ca980-0396-4874-82cb-dd4df95c4ba7" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Pathfinding2D/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Pathfinding2D/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Editor/GridInspector.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Editor/GridInspector.cs" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -91,6 +94,7 @@
       <option name="presentableId" value="Default" />
       <updated>1716208383874</updated>
       <workItem from="1716208387487" duration="6935000" />
+      <workItem from="1716275622223" duration="2386000" />
     </task>
     <servers />
   </component>

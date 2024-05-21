@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
@@ -16,25 +17,27 @@ namespace Editor
             if (GUILayout.Button("Generate Grid"))
             {
                 Grid grid = target as Grid;
-                if (EditorUtility.IsDirty(grid))
+                Undo.IncrementCurrentGroup(); // mark changes to be one undo
+                Undo.RecordObject(grid, "Update Grid References"); // undo takes you back here
+                foreach (var cell in grid.walkableGrid)
                 {
-                    foreach (var cell in grid.walkableGrid)
-                    {
-                        if(cell != null)
-                            DestroyImmediate(cell.gameObject);
-                    }
+                    if(cell != null)
+                        Undo.DestroyObjectImmediate(cell.gameObject); // Undo manager keeps track of the object
                 }
 
                 var i = 0;
-                for (var x = 0; x < grid.width; x++)
+                int height = grid.walkableGrid.Length / grid.width;
+                for (var y = 0; y < height; y++)
                 {
-                    for (var y = 0; y < grid.walkableGrid.Length / grid.width; y++)
+                    for (var x = 0; x < grid.width; x++)
                     {
-                        GridCell gridElement = (GridCell)PrefabUtility.InstantiatePrefab(cellPrefab, grid.transform);
+                        GridCell gridElement = PrefabUtility.InstantiatePrefab(cellPrefab, grid.transform) as GridCell;
                         gridElement.transform.position = new Vector3(x, y, 0);
                         grid.walkableGrid[i++] = gridElement;
-                    }
+                        Undo.RegisterCreatedObjectUndo(gridElement.gameObject, "Create Grid Cell");
+                    }    
                 }
+                Undo.SetCurrentGroupName("Generate Grid Cells");
                 EditorUtility.SetDirty(grid); // do this so the change can be saved
             }
             EditorGUI.EndDisabledGroup();

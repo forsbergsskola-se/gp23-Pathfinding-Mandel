@@ -20,10 +20,10 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    static IEnumerable<GridCell> FindPath(Grid grid, GridCell start, GridCell end)
+    private static IEnumerable<GridCell> FindPath(Grid grid, GridCell start, GridCell end)
     {
         // Track visited cells
-        // track sells that need to be visited
+        // track cells that need to be visited
         // track the goal
         // decide what cells to visit next
         
@@ -31,6 +31,5 @@ public class PlayerController : MonoBehaviour
         // reconstruct path
 
         throw new NotImplementedException();
-
     }
 }

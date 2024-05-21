@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Grids;
 using UnityEngine;
+using Grid = Grids.Grid;
 
 public class PlayerController : MonoBehaviour
 {

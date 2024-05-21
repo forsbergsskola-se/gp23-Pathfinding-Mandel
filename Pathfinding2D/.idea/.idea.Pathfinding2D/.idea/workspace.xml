@@ -5,6 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="968ca980-0396-4874-82cb-dd4df95c4ba7" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Pathfinding2D/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Pathfinding2D/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Editor/GridInspector.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Editor/GridInspector.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Grids/Grid.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Grids/Grid.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Grids/GridCell.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Grids/GridCell.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Grids/Grids.asmdef" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Grids/Grids.asmdef" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Tests/GridTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Tests/GridTests.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -95,7 +101,7 @@
       <updated>1716208383874</updated>
       <workItem from="1716208387487" duration="6935000" />
       <workItem from="1716275622223" duration="8644000" />
-      <workItem from="1716287644497" duration="3022000" />
+      <workItem from="1716287644497" duration="4059000" />
     </task>
     <servers />
   </component>
@@ -117,13 +123,13 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Scripts/PlayerController.cs</url>
-          <line>14</line>
+          <line>16</line>
           <properties documentPath="$PROJECT_DIR$/Assets/Scripts/PlayerController.cs" containingFunctionPresentation="Method 'Update'">
             <startOffsets>
-              <option value="324" />
+              <option value="362" />
             </startOffsets>
             <endOffsets>
-              <option value="390" />
+              <option value="428" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="6" />

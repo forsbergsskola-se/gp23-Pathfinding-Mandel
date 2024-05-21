@@ -19,7 +19,7 @@ namespace Editor
                 Grid grid = target as Grid;
                 Undo.IncrementCurrentGroup(); // mark changes to be one undo
                 Undo.RecordObject(grid, "Update Grid References"); // undo takes you back here
-                foreach (var cell in grid.walkableGrid)
+                foreach (var cell in grid.GetComponentsInChildren<GridCell>())
                 {
                     if(cell != null)
                         Undo.DestroyObjectImmediate(cell.gameObject); // Undo manager keeps track of the object

@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="968ca980-0396-4874-82cb-dd4df95c4ba7" name="Changes" comment="" />
+    <list default="true" id="968ca980-0396-4874-82cb-dd4df95c4ba7" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerController.cs" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -102,7 +104,7 @@
       <workItem from="1716208387487" duration="6935000" />
       <workItem from="1716275622223" duration="8644000" />
       <workItem from="1716287644497" duration="12323000" />
-      <workItem from="1716362202809" duration="5167000" />
+      <workItem from="1716362202809" duration="6444000" />
     </task>
     <servers />
   </component>
@@ -118,25 +120,5 @@
   <component name="UnityUnitTestConfiguration" currentTestLauncher="Both" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <condition expression="current.ToString() == &quot;GridCell (8|9)&quot;" language="C#" />
-          <url>file://$PROJECT_DIR$/Assets/Scripts/PlayerController.cs</url>
-          <line>92</line>
-          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/PlayerController.cs" containingFunctionPresentation="Method 'FindPath_BreadthFirst'">
-            <startOffsets>
-              <option value="3111" />
-            </startOffsets>
-            <endOffsets>
-              <option value="3179" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

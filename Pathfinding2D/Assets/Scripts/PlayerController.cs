@@ -96,12 +96,11 @@ public class PlayerController : MonoBehaviour
                 todo.Enqueue(neighbour);
                 previous[neighbour] = current;
                 visited.Add(neighbour);
-                neighbour.spriteRenderer.color = Color.blue;
+                neighbour.spriteRenderer.color = Color.cyan;
                 if (neighbour == end) return TracePath(neighbour, previous).Reverse();
             }
         }
-        //return null;
-        throw new Exception("Path not found, returned null.");
+        return null;
     }
 
     private static IEnumerable<GridCell> TracePath(GridCell neighbour, Dictionary<GridCell, GridCell> previous)

@@ -51,6 +51,19 @@ public class PlayerController : MonoBehaviour
             }
             StartCoroutine(Co_WalkPath(path));
         }
+        
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            Grid grid = FindObjectOfType<Grid>();
+            GridCell start = grid.GetCellForPosition(this.transform.position);
+            GridCell end = grid.GetCellForPosition(gold.transform.position);
+            var path = FindPath_BestFirst(grid, start, end);
+            foreach (var node in path)
+            {
+                node.spriteRenderer.color = Color.cyan;
+            }
+            StartCoroutine(Co_WalkPath(path));
+        }
     }
 
     IEnumerator Co_WalkPath(IEnumerable<GridCell> path)
@@ -178,7 +191,7 @@ public class PlayerController : MonoBehaviour
             
             foreach (var neighbor in grid.GetWalkableNeighbourForCell(current))
             {
-                int newNeighborCosts = costs[current] + neighbor.Costs;
+                var newNeighborCosts = costs[current] + neighbor.Costs;
                 if (costs.TryGetValue(neighbor, out int neighborCosts) &&
                     neighborCosts <= newNeighborCosts) continue;
                                                                  
@@ -191,6 +204,8 @@ public class PlayerController : MonoBehaviour
         }
         return null;
     }
+    
+    
 }
 
 // TODO add Different actors all walking at the same time

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Collections;
 using Grids;
 using UnityEngine;
 using Grid = Grids.Grid;
@@ -111,5 +112,29 @@ public class PlayerController : MonoBehaviour
             if(!previous.TryGetValue(neighbour, out neighbour))
                 yield break;
         }
+    }
+    
+    private static IEnumerable<GridCell> FindPath_Dijkstra(Grid grid, GridCell start, GridCell end)
+    {
+        PriorityQueue<GridCell> todo = new();
+        HashSet<GridCell> visited = new();
+        Dictionary<GridCell, GridCell> previous = new();
+        todo.Enqueue(start);
+        visited.Add(start);
+        
+        while (todo.Count > 0)
+        {
+            var current = todo.Dequeue();
+            foreach (var neighbour in grid.GetWalkableNeighbourForCell(current))
+            {
+                if(visited.Contains(neighbour)) continue;
+                todo.Enqueue(neighbour);
+                previous[neighbour] = current;
+                visited.Add(neighbour);
+                neighbour.spriteRenderer.color = Color.cyan;
+                if (neighbour == end) return TracePath(neighbour, previous).Reverse();
+            }
+        }
+        return null;
     }
 }

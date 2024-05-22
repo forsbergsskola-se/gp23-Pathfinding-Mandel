@@ -12,15 +12,28 @@ public class PlayerController : MonoBehaviour
     
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.D))
         {
             Grid grid = FindObjectOfType<Grid>();
             GridCell start = grid.GetCellForPosition(this.transform.position);
             GridCell end = grid.GetCellForPosition(gold.transform.position);
-            var path = FindPath(grid, start, end);
+            var path = FindPath_DepthFirst(grid, start, end);
             foreach (var node in path)
             {
                 node.spriteRenderer.color = Color.green;
+            }
+            StartCoroutine(Co_WalkPath(path));
+        }
+        
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            Grid grid = FindObjectOfType<Grid>();
+            GridCell start = grid.GetCellForPosition(this.transform.position);
+            GridCell end = grid.GetCellForPosition(gold.transform.position);
+            var path = FindPath_BreadthFirst(grid, start, end);
+            foreach (var node in path)
+            {
+                node.spriteRenderer.color = Color.yellow;
             }
             StartCoroutine(Co_WalkPath(path));
         }
@@ -40,7 +53,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private static IEnumerable<GridCell> FindPath(Grid grid, GridCell start, GridCell end)
+    private static IEnumerable<GridCell> FindPath_DepthFirst(Grid grid, GridCell start, GridCell end)
     {
         Stack<GridCell> path = new Stack<GridCell>();
         HashSet<GridCell> visited = new HashSet<GridCell>();
@@ -64,5 +77,41 @@ public class PlayerController : MonoBehaviour
                 path.Pop();
         }
         return null;
+    }
+    
+    private static IEnumerable<GridCell> FindPath_BreadthFirst(Grid grid, GridCell start, GridCell end)
+    {
+        Queue<GridCell> todo = new();
+        HashSet<GridCell> visited = new();
+        Dictionary<GridCell, GridCell> previous = new(); // <Key, Value>
+        todo.Enqueue(start);
+        visited.Add(start);
+        
+        while (todo.Count > 0)
+        {
+            var current = todo.Dequeue();
+            foreach (var neighbour in grid.GetWalkableNeighbourForCell(current))
+            {
+                if(visited.Contains(neighbour)) continue;
+                todo.Enqueue(neighbour);
+                previous[neighbour] = current;
+                visited.Add(neighbour);
+                neighbour.spriteRenderer.color = Color.blue;
+                if (neighbour == end) return TracePath(neighbour, previous).Reverse();
+                break;
+            }
+        }
+        //return null;
+        throw new Exception("Path not found, returned null.");
+    }
+
+    private static IEnumerable<GridCell> TracePath(GridCell neighbour, Dictionary<GridCell, GridCell> previous)
+    {
+        while (true)
+        {
+            yield return neighbour;
+            if(!previous.TryGetValue(neighbour, out neighbour))
+                yield break;
+        }
     }
 }

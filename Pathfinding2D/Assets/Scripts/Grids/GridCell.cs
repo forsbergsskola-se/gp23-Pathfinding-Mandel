@@ -8,7 +8,7 @@ namespace Grids
     public class GridCell : MonoBehaviour
     {
         public SpriteRenderer spriteRenderer;
-        [SerializeField] private CellType cellType;
+        public CellType cellType;
         
         public enum CellType
         {

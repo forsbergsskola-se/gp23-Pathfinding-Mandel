@@ -7163,15 +7163,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 346740628229038354, guid: 8bb624412978d4cbc8bc21029e55acc8, type: 3}
       propertyPath: m_Color.b
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 346740628229038354, guid: 8bb624412978d4cbc8bc21029e55acc8, type: 3}
       propertyPath: m_Color.g
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 346740628229038354, guid: 8bb624412978d4cbc8bc21029e55acc8, type: 3}
       propertyPath: m_Color.r
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 495448712232414067, guid: 8bb624412978d4cbc8bc21029e55acc8, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7219,7 +7219,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6864427751983402309, guid: 8bb624412978d4cbc8bc21029e55acc8, type: 3}
       propertyPath: cellType
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6864427751983402309, guid: 8bb624412978d4cbc8bc21029e55acc8, type: 3}
       propertyPath: isWalkable

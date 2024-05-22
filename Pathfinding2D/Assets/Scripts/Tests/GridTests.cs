@@ -1,7 +1,6 @@
 using System;
 using Grids;
 using NUnit.Framework;
-using UnityEditor;
 using UnityEngine;
 using Grid = Grids.Grid;
 using Object = UnityEngine.Object;

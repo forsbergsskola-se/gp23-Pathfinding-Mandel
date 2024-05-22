@@ -8,7 +8,7 @@ namespace Editor
     [CustomEditor(typeof(Grid))]
     public class GridInspector : UnityEditor.Editor
     {
-        private UnityEngine.Object cellPrefab;
+        private Object cellPrefab;
         
         public override void OnInspectorGUI()
         {

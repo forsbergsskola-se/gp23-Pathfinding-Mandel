@@ -8,9 +8,9 @@ namespace Grids
         public GridCell[] walkableGrid = new GridCell[100];
         public int width = 10;
 
-        public int Height => walkableGrid.Length / width;
+        private int Height => walkableGrid.Length / width;
 
-        public bool IsWalkable(int x, int y)
+        private bool IsWalkable(int x, int y)
         {
             return walkableGrid[y * width + x].isWalkable; // find the right index in the array.
         }
@@ -36,12 +36,12 @@ namespace Grids
             return IsWalkable(index.x, index.y);
         }
 
-        public GridCell GetCellForIndex(Vector2Int index)
+        private GridCell GetCellForIndex(Vector2Int index)
         {
             return walkableGrid[index.y * width + index.x];
         }
 
-        public IEnumerable<Vector2Int> GetWalkDirection()
+        private IEnumerable<Vector2Int> GetWalkDirection()
         {
             yield return Vector2Int.up;
             yield return Vector2Int.right;

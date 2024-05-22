@@ -55,8 +55,8 @@ public class PlayerController : MonoBehaviour
 
     private static IEnumerable<GridCell> FindPath_DepthFirst(Grid grid, GridCell start, GridCell end)
     {
-        Stack<GridCell> path = new Stack<GridCell>();
-        HashSet<GridCell> visited = new HashSet<GridCell>();
+        Stack<GridCell> path = new();
+        HashSet<GridCell> visited = new();
         path.Push(start);
         visited.Add(start);
 

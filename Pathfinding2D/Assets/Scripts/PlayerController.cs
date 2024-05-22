@@ -151,9 +151,33 @@ public class PlayerController : MonoBehaviour
                 todo.Enqueue(neighbour, newNeighbourCosts);
                 previous[neighbour] = current;
                 costs[neighbour] = newNeighbourCosts;
-                neighbour.spriteRenderer.color = neighbour.cellType == GridCell.CellType.Ground ? Color.gray : Color.cyan;
+                neighbour.spriteRenderer.ShiftBrightness(0.4f);
             }
         }
         return null;
+    }
+}
+
+// TODO add a*
+
+public static class SpriteRendererExtensions
+{
+    public static void ShiftHue(this SpriteRenderer spriteRenderer, float hue)
+    {
+        Color.RGBToHSV(spriteRenderer.color, out var h, out var s, out var v);
+        spriteRenderer.color = Color.HSVToRGB((h + hue)%1, s, v);
+    }
+    
+    public static void ShiftBrightness(this SpriteRenderer spriteRenderer, float brightness)
+    {
+        Color.RGBToHSV(spriteRenderer.color, out var h, out var s, out var v);
+        if (v > 0.5f)
+        {
+            spriteRenderer.color = Color.HSVToRGB(h, s, (v-brightness)%1f);
+        }
+        else
+        {
+            spriteRenderer.color = Color.HSVToRGB(h, s, (v+brightness)%1f);
+        }
     }
 }

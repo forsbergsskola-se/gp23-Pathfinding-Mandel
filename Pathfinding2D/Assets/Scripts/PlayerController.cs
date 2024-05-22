@@ -44,10 +44,10 @@ public class PlayerController : MonoBehaviour
             Grid grid = FindObjectOfType<Grid>();
             GridCell start = grid.GetCellForPosition(this.transform.position);
             GridCell end = grid.GetCellForPosition(gold.transform.position);
-            var path = FindPath_BreadthFirst(grid, start, end);
+            var path = FindPath_Dijkstra(grid, start, end);
             foreach (var node in path)
             {
-                node.spriteRenderer.color = Color.yellow;
+                node.spriteRenderer.color = Color.magenta;
             }
             StartCoroutine(Co_WalkPath(path));
         }
@@ -151,7 +151,7 @@ public class PlayerController : MonoBehaviour
                 todo.Enqueue(neighbour, newNeighbourCosts);
                 previous[neighbour] = current;
                 costs[neighbour] = newNeighbourCosts;
-                neighbour.spriteRenderer.color = Color.cyan;
+                neighbour.spriteRenderer.color = neighbour.cellType == GridCell.CellType.Ground ? Color.gray : Color.cyan;
             }
         }
         return null;

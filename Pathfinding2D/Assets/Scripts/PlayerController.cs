@@ -98,7 +98,6 @@ public class PlayerController : MonoBehaviour
                 visited.Add(neighbour);
                 neighbour.spriteRenderer.color = Color.blue;
                 if (neighbour == end) return TracePath(neighbour, previous).Reverse();
-                break;
             }
         }
         //return null;

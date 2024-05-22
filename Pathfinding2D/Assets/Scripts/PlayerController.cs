@@ -156,9 +156,44 @@ public class PlayerController : MonoBehaviour
         }
         return null;
     }
+    
+    static int GetEstimatedCosts(GridCell from, GridCell to)
+    {
+        return Mathf.RoundToInt(Vector3.Distance(from.transform.position, to.transform.position));
+    }
+    
+    static IEnumerable<GridCell> FindPath_BestFirst(Grid grid, GridCell start, GridCell end)
+    {
+        PriorityQueue<GridCell> todo = new();
+        todo.Enqueue(start, 0);
+        Dictionary<GridCell, int> costs = new();
+        costs[start] = GetEstimatedCosts(start, end); // START = Estimated Distance Costs
+        Dictionary<GridCell, GridCell> previous = new();
+
+        while (todo.Count > 0)
+        {
+            var current = todo.Dequeue();
+            if (current == end)
+                return TracePath(current, previous).Reverse();
+            
+            foreach (var neighbor in grid.GetWalkableNeighbourForCell(current))
+            {
+                int newNeighborCosts = costs[current] + neighbor.Costs;
+                if (costs.TryGetValue(neighbor, out int neighborCosts) &&
+                    neighborCosts <= newNeighborCosts) continue;
+                                                                 
+                todo.Enqueue(neighbor, GetEstimatedCosts(neighbor, end)); // Get Estimate
+                previous[neighbor] = current;
+                costs[neighbor] = newNeighborCosts;
+                
+                neighbor.spriteRenderer.ShiftBrightness(0.4f);
+            }
+        }
+        return null;
+    }
 }
 
-// TODO add a*
+// TODO add Different actors all walking at the same time
 
 public static class SpriteRendererExtensions
 {

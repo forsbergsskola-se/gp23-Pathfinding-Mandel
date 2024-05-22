@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             Grid grid = FindObjectOfType<Grid>();
             GridCell start = grid.GetCellForPosition(this.transform.position);
@@ -27,6 +27,19 @@ public class PlayerController : MonoBehaviour
         }
         
         if (Input.GetKeyDown(KeyCode.B))
+        {
+            Grid grid = FindObjectOfType<Grid>();
+            GridCell start = grid.GetCellForPosition(this.transform.position);
+            GridCell end = grid.GetCellForPosition(gold.transform.position);
+            var path = FindPath_BreadthFirst(grid, start, end);
+            foreach (var node in path)
+            {
+                node.spriteRenderer.color = Color.yellow;
+            }
+            StartCoroutine(Co_WalkPath(path));
+        }
+        
+        if (Input.GetKeyDown(KeyCode.D))
         {
             Grid grid = FindObjectOfType<Grid>();
             GridCell start = grid.GetCellForPosition(this.transform.position);
@@ -117,22 +130,28 @@ public class PlayerController : MonoBehaviour
     private static IEnumerable<GridCell> FindPath_Dijkstra(Grid grid, GridCell start, GridCell end)
     {
         PriorityQueue<GridCell> todo = new();
-        HashSet<GridCell> visited = new();
+        todo.Enqueue(start, 0);
+        Dictionary<GridCell, int> costs = new()
+        {
+            [start] = 0
+        };
         Dictionary<GridCell, GridCell> previous = new();
-        todo.Enqueue(start);
-        visited.Add(start);
         
         while (todo.Count > 0)
         {
             var current = todo.Dequeue();
+            if (current == end) return TracePath(current, previous).Reverse();
+            
             foreach (var neighbour in grid.GetWalkableNeighbourForCell(current))
             {
-                if(visited.Contains(neighbour)) continue;
-                todo.Enqueue(neighbour);
+                var newNeighbourCosts = costs[current] + neighbour.Costs; // calculate new path cost
+                if(costs.TryGetValue(neighbour, out int neighbourCost) && // check if node has cost
+                   neighbourCost <= newNeighbourCosts) continue; // and if the cost is more efficient
+                
+                todo.Enqueue(neighbour, newNeighbourCosts);
                 previous[neighbour] = current;
-                visited.Add(neighbour);
+                costs[neighbour] = newNeighbourCosts;
                 neighbour.spriteRenderer.color = Color.cyan;
-                if (neighbour == end) return TracePath(neighbour, previous).Reverse();
             }
         }
         return null;

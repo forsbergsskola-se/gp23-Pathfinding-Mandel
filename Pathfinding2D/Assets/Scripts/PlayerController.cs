@@ -70,7 +70,7 @@ public class PlayerController : MonoBehaviour
             Grid grid = FindObjectOfType<Grid>();
             GridCell start = grid.GetCellForPosition(this.transform.position);
             GridCell end = grid.GetCellForPosition(gold.transform.position);
-            var path = FindPath_BestFirst(grid, start, end);
+            var path = FindPath_AStar(grid, start, end);
             foreach (var node in path)
             {
                 node.spriteRenderer.color = Color.red;

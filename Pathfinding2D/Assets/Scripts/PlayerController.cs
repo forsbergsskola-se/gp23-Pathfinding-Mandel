@@ -108,7 +108,7 @@ public class PlayerController : MonoBehaviour
                 if(visited.Contains(neighbour)) continue;
                 path.Push(neighbour);
                 visited.Add(neighbour);
-                neighbour.spriteRenderer.color = Color.blue;
+                neighbour.spriteRenderer.ShiftBrightness(0.4f);
                 if (neighbour == end) return path.Reverse();
                 foundNextNode = true;
                 break;
@@ -136,7 +136,7 @@ public class PlayerController : MonoBehaviour
                 todo.Enqueue(neighbour);
                 previous[neighbour] = current;
                 visited.Add(neighbour);
-                neighbour.spriteRenderer.color = Color.cyan;
+                neighbour.spriteRenderer.ShiftBrightness(0.4f);
                 if (neighbour == end) return TracePath(neighbour, previous).Reverse();
             }
         }
@@ -202,17 +202,17 @@ public class PlayerController : MonoBehaviour
             if (current == end)
                 return TracePath(current, previous).Reverse();
             
-            foreach (var neighbor in grid.GetWalkableNeighbourForCell(current))
+            foreach (var neighbour in grid.GetWalkableNeighbourForCell(current))
             {
-                var newNeighborCosts = costs[current] + neighbor.Costs;
-                if (costs.TryGetValue(neighbor, out int neighborCosts) &&
+                var newNeighborCosts = costs[current] + neighbour.Costs;
+                if (costs.TryGetValue(neighbour, out int neighborCosts) &&
                     neighborCosts <= newNeighborCosts) continue;
                                                                  
-                todo.Enqueue(neighbor, GetEstimatedCosts(neighbor, end)); // Get Estimate
-                previous[neighbor] = current;
-                costs[neighbor] = newNeighborCosts;
+                todo.Enqueue(neighbour, GetEstimatedCosts(neighbour, end)); // Get Estimate
+                previous[neighbour] = current;
+                costs[neighbour] = newNeighborCosts;
                 
-                neighbor.spriteRenderer.ShiftBrightness(0.4f);
+                neighbour.spriteRenderer.ShiftBrightness(0.4f);
             }
         }
         return null;
@@ -222,8 +222,8 @@ public class PlayerController : MonoBehaviour
     {
         PriorityQueue<GridCell> todo = new();
         todo.Enqueue(start, 0);
-        Dictionary<GridCell, int> costs = new();
-        costs[start] = 0 + GetEstimatedCosts(start, end); // Costs To Here + Estimated Rem. Costs
+        Dictionary<GridCell, int> gCosts = new();
+        gCosts[start] = 0;  // Cost from start to the current cell
         Dictionary<GridCell, GridCell> previous = new();
 
         while (todo.Count > 0)
@@ -231,18 +231,22 @@ public class PlayerController : MonoBehaviour
             var current = todo.Dequeue();
             if (current == end)
                 return TracePath(current, previous).Reverse();
-            
-            foreach (var neighbor in grid.GetWalkableNeighbourForCell(current))
+        
+            foreach (var neighbour in grid.GetWalkableNeighbourForCell(current))
             {
-                int newNeighborCosts = costs[current] + neighbor.Costs;
-                if (costs.TryGetValue(neighbor, out int neighborCosts) &&
-                    neighborCosts <= newNeighborCosts) continue;
-                                                                    
-                todo.Enqueue(neighbor, newNeighborCosts + GetEstimatedCosts(neighbor, end));  // Costs To Here + Estimated Rem. Costs
-                previous[neighbor] = current;
-                costs[neighbor] = newNeighborCosts;
-                
-                neighbor.spriteRenderer.ShiftBrightness(0.4f);
+                int tentativeGCost = gCosts[current] + neighbour.Costs;
+                if (gCosts.TryGetValue(neighbour, out int neighborGCost) && neighborGCost <= tentativeGCost)
+                    continue;
+
+                previous[neighbour] = current;
+                gCosts[neighbour] = tentativeGCost;
+
+                int hCost = GetEstimatedCosts(neighbour, end);  // Heuristic cost from the neighbour to the end
+                int fCost = tentativeGCost + hCost;  // Total cost
+
+                todo.Enqueue(neighbour, fCost);
+
+                neighbour.spriteRenderer.ShiftBrightness(0.4f);
             }
         }
 
@@ -250,8 +254,6 @@ public class PlayerController : MonoBehaviour
     }
     
 }
-
-// TODO add Different actors all walking at the same time
 
 public static class SpriteRendererExtensions
 {

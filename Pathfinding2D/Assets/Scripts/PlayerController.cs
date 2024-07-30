@@ -47,7 +47,7 @@ public class PlayerController : MonoBehaviour
             var path = FindPath_Dijkstra(grid, start, end);
             foreach (var node in path)
             {
-                node.spriteRenderer.color = Color.magenta;
+                node.spriteRenderer.color = Color.red;
             }
             StartCoroutine(Co_WalkPath(path));
         }
@@ -73,7 +73,7 @@ public class PlayerController : MonoBehaviour
             var path = FindPath_AStar(grid, start, end);
             foreach (var node in path)
             {
-                node.spriteRenderer.color = Color.red;
+                node.spriteRenderer.color = Color.magenta;
             }
             StartCoroutine(Co_WalkPath(path));
         }

@@ -1,24 +1,43 @@
-# gp23-Pathfinding-Mandel
+# Pathfinding
 
-Course at Forsbergs Skola learning pathfinding algorithms. The path the algorithim calcualted is coloured brightly while the visited nodes are grayed out, giving an indication to how far it searched before finding the quickest path.
+This interactive demonstration showcases the performance and characteristics of five popular pathfinding algorithms: Depth First Search (DFS), Breadth First Search (BFS), Best First Search, Dijkstra's Algorithm, and A*.
+Grid Configuration:
+- Walls: Non-walkable cells that act as obstacles. (Black)
+- Ground: Walkable cells with a low cost. (White)
+- Water: Walkable cells with a higher traversal cost. (Blue)
+- Visited neighbours: Walkable cells where the alorithim searched but did nor find a path. (Gray)
 
-### Depth First:
-<img width="780" alt="Depth" src="https://github.com/user-attachments/assets/d3682053-dc9f-4e92-854f-71ac8ff70ddc">
+Observe the path found by each algorithm, marked with a bright colour for clarity.
 
-### Breadth First:
-<img width="780" alt="Breadth" src="https://github.com/user-attachments/assets/4a6d0c2d-13b7-41e2-8c1a-ed94d80cb3d7">
+## Depth First Search (DFS):
+Explores paths deeply before backtracking, tends to follow one path to its end before trying another. 
+Not guaranteed to find the shortest path.
 
-
-### Best First:
-<img width="780" alt="Best" src="https://github.com/user-attachments/assets/e89dd7d5-0587-4d74-a2c0-35c0b5c062b3">
-
-
-## With higher-cost blue tiles:
-In the same maze, these two find an other path since blue nodes cost more to cross.
-
-### Dijkstra:
-<img width="780" alt="Dijkstra" src="https://github.com/user-attachments/assets/67184a60-89dd-4789-9dbe-a2797ccd9be7">
+<img width="780" alt="Depth" src="https://github.com/user-attachments/assets/e979307b-aea8-41e2-bb4d-f2c1bf250a13">
 
 
-### A*
-<img width="780" alt="A*" src="https://github.com/user-attachments/assets/697b8355-602e-4444-996c-ed465bf60abe">
+## Breadth First Search (BFS): 
+Explores all neighbors at the current depth level before moving deeper, guarantees finding the shortest path in an unweighted grid. 
+Efficient for finding the shortest path in mazes without varying costs.
+<img width="780" alt="Breadth" src="https://github.com/user-attachments/assets/c6c7785d-2361-4374-9e71-b55e259414c9">
+
+
+## Best First Search:
+Uses a heuristic to prioritize which nodes to explore, quickly moves towards the goal based on the heuristic estimate. 
+Does not guarantee the shortest path in weighted grids.
+<img width="780" alt="Best" src="https://github.com/user-attachments/assets/b1113fd0-cb32-40b2-ac69-5a8fc19a87c5">
+
+## Dijkstra's Algorithm:
+Explores all possible paths to ensure the shortest path is found, takes varying costs into account, making it suitable for weighted grids.
+Guaranteed to find the shortest path.
+<img width="780" alt="Dijkstra" src="https://github.com/user-attachments/assets/e1eeaa8e-85c0-444f-b593-2309e505dc64">
+
+
+## A*:
+Combines the actual cost to reach a node and a heuristic estimate to the goal, efficiently finds the shortest path by balancing exploration and goal-directed search.
+Guaranteed to find the shortest path with an admissible heuristic.
+<img width="780" alt="A*" src="https://github.com/user-attachments/assets/cb2b4598-c2eb-41d0-b573-a005b4f94d6b">
+
+
+mandelcohen, 2024
+

@@ -38,6 +38,7 @@ Combines the actual cost to reach a node and a heuristic estimate to the goal, e
 Guaranteed to find the shortest path with an admissible heuristic.
 <img width="780" alt="A*" src="https://github.com/user-attachments/assets/cb2b4598-c2eb-41d0-b573-a005b4f94d6b">
 
+![Pathfinding Gif](https://github.com/user-attachments/assets/84c8c4c0-103d-4110-b1e5-9f3b935fdd5b)
 
 mandelcohen, 2024
 
